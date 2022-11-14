@@ -37,7 +37,7 @@ namespace Thong_Tin_Khach_hang
 
         private void btnthongTinKhachHang_Click(object sender, EventArgs e)
         {
-            openChildForm(new Form1());
+            openChildForm(new frmthongTinKhachHang());
         }
 
         private void btnthongKeGiaoDich_Click(object sender, EventArgs e)
