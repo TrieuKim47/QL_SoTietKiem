@@ -128,7 +128,15 @@ namespace Thong_Tin_Khach_hang
                 pb.tuDongGiaHan=rdbYes.Checked;
                 maSoTK=pb.maSoTK;
                 iconButton7.Enabled=false;
-                if (edit.InsertPassBook(pb))
+
+                phieuGuiTien pg = new phieuGuiTien();
+                pg.maPhieu = Random().ToString();
+                pg.maNV = maNV1();
+                pg.maSoTK = maSoTK;
+                pg.ngayGui = dateTimePicker2.Value;
+                pg.soTienGui = decimal.Parse(txtsoTien.Text);
+                maPhieuGui = pg.maPhieu;
+                if (edit.InsertPassBook(pb)&& edit.InsertphieuGuiTien(pg))
                 {
                     MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     iconbtnAdd.Hide();
@@ -151,31 +159,19 @@ namespace Thong_Tin_Khach_hang
             tabControl1.TabPages.Add(tabPage1);
             tabPage1.Text = "Thông tin khách hàng";
             iconbtnAdd.Show();
+            iconbtninSo.Hide();
+            iconbtnphieuGuiTien.Hide();
+            iconButton7.Enabled = true;
         }
 
         private void iconbtnphieuGuiTien_Click(object sender, EventArgs e)
         {
-            phieuGuiTien pg = new phieuGuiTien();
-            pg.maPhieu=Random().ToString();
-            pg.maNV = maNV1();
-            pg.maSoTK = maSoTK;
-            pg.ngayGui = dateTimePicker2.Value;
-            pg.soTienGui =decimal.Parse(txtsoTien.Text);
-            maPhieuGui = pg.maPhieu;
-            if (edit.InsertphieuGuiTien(pg))
-            {
-                
-                iconbtninSo.Show();
-                tabControl1.TabPages.Remove(tabPage1);
-                tabControl1.TabPages.Remove(tabPage2);
-                tabControl1.TabPages.Remove(tabPage4);
-                tabControl1.TabPages.Add(tabPage3);
-                inPhieuGui();
-            }
-            else
-            {
-                MessageBox.Show("Lỗi không in được!! Vui lòng thử lại sau", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            iconbtninSo.Show();
+            tabControl1.TabPages.Remove(tabPage1);
+            tabControl1.TabPages.Remove(tabPage2);
+            tabControl1.TabPages.Remove(tabPage4);
+            tabControl1.TabPages.Add(tabPage3);
+            inPhieuGui();
            
         }
 
