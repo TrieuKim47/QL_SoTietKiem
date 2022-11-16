@@ -30,7 +30,7 @@ namespace Thong_Tin_Khach_hang
         //Danh sách khách hàng
         void ShowData()
         {
-            string query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT ";
+            string query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh',kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT ";
             dataGridView1.DataSource = dataProvider.Instance.ExecuteQuery(query);
             iconbtninSo.Hide();
             iconbtnphieuGuiTien.Hide();
@@ -112,7 +112,7 @@ namespace Thong_Tin_Khach_hang
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
+            else 
             {
                 string query = "SELECT MaLoaiTK from LOAITIETKIEM where TenLoaiTK='" + cboloaiTietKiem.Text + "'";
                 dt = dataProvider.Instance.ExecuteQuery(query);
@@ -197,6 +197,7 @@ namespace Thong_Tin_Khach_hang
                 per.cccd = txtcccd.Text;
                 per.tenKH = txthoTen.Text;
                 per.ngaySinh = dtmNgaySinh.Value;
+                per.gioiTinh = cboGioiTinh.Text;
                 per.diaChi = txtdiaChi.Text;
                 per.sdt = txtsdt.Text;
                 per.email = txtgmail.Text;
@@ -273,6 +274,12 @@ namespace Thong_Tin_Khach_hang
                 cbonhanVien.Focus();
                 return false;
             }
+            if (string.IsNullOrEmpty(cboGioiTinh.Text))
+            {
+                MessageBox.Show("bạn chưa nhập Giới tính", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboGioiTinh.Focus();
+                return false;
+            }
             return true;
         }
         int Random()
@@ -291,12 +298,13 @@ namespace Thong_Tin_Khach_hang
                 txtcccd.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
                 txthoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
                 dtmNgaySinh.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-                txtdiaChi.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
-                txtsdt.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
-                txtgmail.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
-                cboChiNhanh.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
-                cbonhanVien.Text = dataGridView1.Rows[index].Cells[8].Value.ToString();
-                dtmNgayThamGia.Text = dataGridView1.Rows[index].Cells[9].Value.ToString();
+                cboGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
+                txtdiaChi.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
+                txtsdt.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
+                txtgmail.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
+                cboChiNhanh.Text = dataGridView1.Rows[index].Cells[8].Value.ToString();
+                cbonhanVien.Text = dataGridView1.Rows[index].Cells[9].Value.ToString();
+                dtmNgayThamGia.Text = dataGridView1.Rows[index].Cells[10].Value.ToString();
             }
         }
 
@@ -329,6 +337,7 @@ namespace Thong_Tin_Khach_hang
             string TenCN = dt.Rows[0]["MaCN"].ToString();
             return TenCN;
         }
+
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (CheckData())
@@ -339,6 +348,7 @@ namespace Thong_Tin_Khach_hang
                 per.cccd = txtcccd.Text;
                 per.tenKH = txthoTen.Text;
                 per.ngaySinh = dtmNgaySinh.Value;
+                per.gioiTinh = cboGioiTinh.Text;
                 per.diaChi = txtdiaChi.Text;
                 per.sdt = txtsdt.Text;
                 per.email = txtgmail.Text;
@@ -503,9 +513,8 @@ namespace Thong_Tin_Khach_hang
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            frmMain frmMain = new frmMain();
             Rectangle pagearea = e.PageBounds;
-            e.Graphics.DrawImage(memoryimg,(60+pagearea.Width/2)-(this.pnlPrint.Width/2), this.pnlPrint.Location.Y);
+            e.Graphics.DrawImage(memoryimg,40, this.pnlPrint.Location.Y);
         }
 
         private void txtsoTien_KeyPress(object sender, KeyPressEventArgs e)
@@ -561,19 +570,19 @@ namespace Thong_Tin_Khach_hang
                     string query;
                     if (rdbsdt.Checked)
                     {
-                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.SDT like '%" + txttimKiem.Text + "%'";
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.SDT like '%" + txttimKiem.Text + "%'";
                     }
                     else if (rdbcccd.Checked)
                     {
-                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.CCCD like'%" + txttimKiem.Text + "%'";
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.CCCD like'%" + txttimKiem.Text + "%'";
                     }
                     else if (rdbten.Checked)
                     {
-                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and TenKH like N'%" + txttimKiem.Text + "%'";
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and TenKH like N'%" + txttimKiem.Text + "%'";
                     }
                     else
                     {
-                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and MaKH like N'%" + txttimKiem.Text + "%'";
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and MaKH like N'%" + txttimKiem.Text + "%'";
                     }
                   dataGridView1.DataSource = dataProvider.Instance.ExecuteQuery(query);
                 }

@@ -8,6 +8,14 @@ namespace Thong_Tin_Khach_hang
 {
     internal class phieuGuiTien
     {
+
+        public string maPhieu { get; set; }
+        public string maSoTK { get; set; }
+
+        public string maNV { get; set; }
+        public DateTime ngayGui { get; set; }
+        public Decimal soTienGui { get; set; }
+        public phieuGuiTien() { }
         public phieuGuiTien(string maPhieu, string maSoTK, string maNV, DateTime ngayGui, decimal soTienGui)
         {
             this.maPhieu = maPhieu;
@@ -17,13 +25,7 @@ namespace Thong_Tin_Khach_hang
             this.soTienGui = soTienGui;
         }
 
-        public phieuGuiTien() { }
-        public string maPhieu { get; set; }
-        public string maSoTK { get; set; }
 
-        public string maNV { get; set; }
-        public DateTime ngayGui { get; set; }
-        public Decimal soTienGui { get; set; }
 
     }
 }

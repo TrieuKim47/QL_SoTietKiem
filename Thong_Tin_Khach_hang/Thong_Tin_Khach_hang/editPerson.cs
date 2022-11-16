@@ -14,7 +14,7 @@ namespace Thong_Tin_Khach_hang
         public bool Insert(Person kh)
         {
             var connection = dataProvider.Instance.getConnection();
-            string querry = "INSERT INTO KHACHHANG (MaKH, CCCD, TenKH, NgaySinh, DiaChi,SDT,Email,ChiNhanhNhapTT,NhanVienNhapTT,NgayThamGia) VALUES (@MaKH, @CCCD, @TenKH, @NgaySinh, @DiaChi,@SDT, @Email, @ChiNhanhNhapTT, @NhanVienNhapTT, @NgayThamGia)";
+            string querry = "INSERT INTO KHACHHANG (MaKH, CCCD, TenKH, NgaySinh, GioiTinh, DiaChi,SDT,Email,ChiNhanhNhapTT,NhanVienNhapTT,NgayThamGia) VALUES (@MaKH, @CCCD, @TenKH, @NgaySinh, @GioiTinh, @DiaChi,@SDT, @Email, @ChiNhanhNhapTT, @NhanVienNhapTT, @NgayThamGia)";
             try
             {
                 connection.Open();
@@ -23,6 +23,7 @@ namespace Thong_Tin_Khach_hang
                 command.Parameters.Add("@CCCD", SqlDbType.NVarChar).Value = kh.cccd;
                 command.Parameters.Add("@TenKH", SqlDbType.NVarChar).Value = kh.tenKH;
                 command.Parameters.Add("@NgaySinh", SqlDbType.DateTime).Value = kh.ngaySinh;
+                command.Parameters.Add("@GioiTinh", SqlDbType.NVarChar).Value = kh.gioiTinh;
                 command.Parameters.Add("@DiaChi", SqlDbType.NVarChar).Value = kh.diaChi;
                 command.Parameters.Add("@SDT", SqlDbType.NVarChar).Value = kh.sdt;
                 command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = kh.email;
@@ -100,7 +101,7 @@ namespace Thong_Tin_Khach_hang
         public bool Update(Person kh)
         {
             var connection = dataProvider.Instance.getConnection();
-            string querry = "UPDATE KHACHHANG SET CCCD=@CCCD, TenKH=@TenKH, NgaySinh=@NgaySinh, DiaChi=@DiaChi,SDT=@SDT, Email=@Email, ChiNhanhNhapTT=@ChiNhanhNhapTT, NhanVienNhapTT=@NhanVienNhapTT, NgayThamGia=@NgayThamGia WHERE maKH=@maKH";
+            string querry = "UPDATE KHACHHANG SET CCCD=@CCCD, TenKH=@TenKH, NgaySinh=@NgaySinh,GioiTinh=@GioiTinh, DiaChi=@DiaChi,SDT=@SDT, Email=@Email, ChiNhanhNhapTT=@ChiNhanhNhapTT, NhanVienNhapTT=@NhanVienNhapTT, NgayThamGia=@NgayThamGia WHERE maKH=@maKH";
             try
             {
                 connection.Open();
@@ -109,6 +110,7 @@ namespace Thong_Tin_Khach_hang
                 command.Parameters.Add("@CCCD", SqlDbType.NVarChar).Value = kh.cccd;
                 command.Parameters.Add("@TenKH", SqlDbType.NVarChar).Value = kh.tenKH;
                 command.Parameters.Add("@NgaySinh", SqlDbType.DateTime).Value = kh.ngaySinh;
+                command.Parameters.Add("@GioiTinh", SqlDbType.NVarChar).Value = kh.gioiTinh;
                 command.Parameters.Add("@DiaChi", SqlDbType.NVarChar).Value = kh.diaChi;
                 command.Parameters.Add("@SDT", SqlDbType.NVarChar).Value = kh.sdt;
                 command.Parameters.Add("@Email", SqlDbType.NVarChar).Value = kh.email;
