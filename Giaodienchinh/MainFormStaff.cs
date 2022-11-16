@@ -124,6 +124,7 @@ namespace WindowsFormsApp1
         private void iconGiaoDich_Click(object sender, EventArgs e)
         {
             ActivateButton(sender,185);
+            OpenChildForm(new fThongTinSoTietKiem());
             ShowSubBtn(panelThongTinSo);
         }
 

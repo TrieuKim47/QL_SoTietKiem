@@ -55,6 +55,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectDB\DataProvider.cs" />
+    <Compile Include="fInPhieuGiaoDichRut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fInPhieuGiaoDichRut.Designer.cs">
+      <DependentUpon>fInPhieuGiaoDichRut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fInPhieuRutSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fInPhieuRutSo.Designer.cs">
+      <DependentUpon>fInPhieuRutSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fThongTinSoTietKiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fThongTinSoTietKiem.Designer.cs">
+      <DependentUpon>fThongTinSoTietKiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFormManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +114,15 @@
     <Compile Include="RJControls\RjTextBox.Designer.cs">
       <DependentUpon>RjTextBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="fInPhieuGiaoDichRut.resx">
+      <DependentUpon>fInPhieuGiaoDichRut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fInPhieuRutSo.resx">
+      <DependentUpon>fInPhieuRutSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fThongTinSoTietKiem.resx">
+      <DependentUpon>fThongTinSoTietKiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFormManager.resx">
       <DependentUpon>MainFormManager.cs</DependentUpon>
     </EmbeddedResource>
