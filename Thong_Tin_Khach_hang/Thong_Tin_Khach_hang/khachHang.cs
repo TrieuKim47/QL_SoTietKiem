@@ -83,6 +83,7 @@ namespace Thong_Tin_Khach_hang
             dateTimePicker2.Value = DateTime.Now;
             dtmNgaySinh.Value = new DateTime(2002, 01, 13);
             rdbYes.Checked = true;
+            rdbten.Checked = true;
         }
 
         private void iconButton7_Click(object sender, EventArgs e)
@@ -550,6 +551,46 @@ namespace Thong_Tin_Khach_hang
         private void btninPhieu_Click(object sender, EventArgs e)
         {
             Print(this.panel5);
+        }
+        private void checkedrdb()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txttimKiem.Text))
+                {
+                    string query;
+                    if (rdbsdt.Checked)
+                    {
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.SDT like '%" + txttimKiem.Text + "%'";
+                    }
+                    else if (rdbcccd.Checked)
+                    {
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and kh.CCCD like'%" + txttimKiem.Text + "%'";
+                    }
+                    else if (rdbten.Checked)
+                    {
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and TenKH like N'%" + txttimKiem.Text + "%'";
+                    }
+                    else
+                    {
+                        query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and MaKH like N'%" + txttimKiem.Text + "%'";
+                    }
+                  dataGridView1.DataSource = dataProvider.Instance.ExecuteQuery(query);
+                }
+                else
+                {
+                    ShowData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+        private void txttimKiem_TextChanged(object sender, EventArgs e)
+        {
+            checkedrdb();
         }
     }
 }
