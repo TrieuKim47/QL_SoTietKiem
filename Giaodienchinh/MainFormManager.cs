@@ -9,13 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FontAwesome.Sharp;
-
-
+using Lần_1;
+using Thong_Tin_Khach_hang;
 
 namespace WindowsFormsApp1
 {
     public partial class MainFormManager : Form
     {
+
+        private Form curentChildForm;
+
         public MainFormManager()
         {
             InitializeComponent();
@@ -27,6 +30,7 @@ namespace WindowsFormsApp1
             panelThongTinSo.Visible=false;
             panelNhanVien.Visible=false;
             panelBCTK.Visible=false;
+            pnChinhSach.Visible = false;
         }
 
         private void hidenSubMenu()
@@ -82,31 +86,55 @@ namespace WindowsFormsApp1
         private void btnThongTinChung_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new frmthongTinKhachHang());
         }
+
+
+        private void openChildForm(Form childForm)
+        {
+            if (curentChildForm != null)
+            {
+                curentChildForm.Close();
+            }
+            curentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelChildForm.Controls.Add(curentChildForm);
+            panelChildForm.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
+
 
         private void btnThemSo_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new fThongTinSoTietKiem());
         }
 
         private void btnRutSo_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            
         }
 
         private void btnGuIThemVon_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new fGuiThemVon());
         }
 
         private void btnGiaHanSo_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new fGiaHanSo());
         }
 
         private void btnQuanLyNV_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new Form1());
         }
 
         private void btnSoTienGiaoDich_Click(object sender, EventArgs e)
@@ -117,13 +145,31 @@ namespace WindowsFormsApp1
         private void btnTopKhachHang_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new frmTopKhachHang());
         }
 
         private void btnLuongGiaoDich_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
+            openChildForm(new frmLuongGiaoDich());
         }
-    
+
+        private void iconChinhSach_Click(object sender, EventArgs e)
+        {
+            showSubMenu(pnChinhSach);
+        }
+
+        private void btCSLX_Click(object sender, EventArgs e)
+        {
+            openChildForm(new ChinhSuaLoaiTK());
+            hidenSubMenu();
+        }
+
+        private void btCSNH_Click(object sender, EventArgs e)
+        {
+            openChildForm(new ThongTinChinhSach());
+            hidenSubMenu();
+        }
     }
     
     

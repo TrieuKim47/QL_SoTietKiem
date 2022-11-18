@@ -10,7 +10,7 @@ namespace WindowsFormsApp1.ConnectDB
 {
     internal class DataProvider
     {//@"Data Source=(local);Initial Catalog=QLSTK;User ID=sa;Password=30012002;Integrated Security=True"
-        private string connectionSTR = @"Data Source=.\sqlexpress;Initial Catalog=Library;Integrated Security=True";
+        private string connectionSTR = @"Data Source=DESKTOP-58Q99IV\SQLEXPRESS;Initial Catalog=QLSTK;Integrated Security=True";
         public DataTable ExcuteQuery(string query)
         {
             SqlConnection connection = new SqlConnection(connectionSTR);
