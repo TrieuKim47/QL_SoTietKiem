@@ -264,8 +264,8 @@ namespace Lần_1
         {
             if (Search)
             {
-                string rowFilter = string.Format("{0} like '{1}'", "CCCD", "*" + tbCCCD.Text + "*");
-                //(dgvNhanVien.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
+                string rowFilter = string.Format("Convert([{0}], 'System.String') LIKE '%{1}%'", "CCCD", tbCCCD.Text);
+                (dgvNhanVien.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
             }
         }
         
@@ -307,9 +307,9 @@ namespace Lần_1
         {
             if (Search)
             {
-                string rowFilter = string.Format("{0} like '{1}'", "SDT", "*" + int.Parse(tbSDT.Text) + "*");
+                string rowFilter = string.Format("Convert([{0}], 'System.String') LIKE '%{1}%'", "SDT", tbSDT.Text);
                 //MessageBox.Show(rowFilter);
-                //(dgvNhanVien.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
+                (dgvNhanVien.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
             }
         }
 
