@@ -38,11 +38,6 @@ namespace Lần_1
             tbThoiHan.Enabled = false;
         }
 
-        private void ChinhSuaLoaiTK_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           
-        }
-
         private void dgvLoaiLX_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i;
@@ -318,7 +313,7 @@ namespace Lần_1
             {
                 int Result;
                 bool a = int.TryParse(tbThoiHan.Text, out Result);
-                string rowFilter = string.Format("{0} > {1}", "ThoiHan", Result);
+                string rowFilter = string.Format("{0} = {1}", "ThoiHan", Result);
                 (dgvLoaiLX.DataSource as DataTable).DefaultView.RowFilter = rowFilter;
             }
         }

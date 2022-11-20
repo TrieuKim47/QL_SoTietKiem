@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
 
         private Form curentChildForm;
         public static MainFormManager Instance;
+        bool formShow = false;
         public MainFormManager()
         {
             InitializeComponent();
@@ -64,30 +65,40 @@ namespace WindowsFormsApp1
                 subMenu.Visible=false;  
         }
 
-        public void iconKhachHang_Click(object sender, EventArgs e)
+
+        private void iconKhachHang_Click(object sender, EventArgs e)
         {
             showSubMenu(panelThongTinKhachHang);
+            //hidenSubMenu();
         }
 
         private void iconThongTinSo_Click(object sender, EventArgs e)
         {
             showSubMenu(panelThongTinSo);
+           // hidenSubMenu();
         }
     
         private void iconNhanVien_Click(object sender, EventArgs e)
         {
             showSubMenu(panelNhanVien);
+            //hidenSubMenu();
         }
                
         private void iconBCTK_Click(object sender, EventArgs e)
         {
             showSubMenu(panelBCTK);
+            //hidenSubMenu();
         }              
-                    
+        void SetDFColor()
+        {
+            btnThongTinChung.BackColor = btnThemSo.BackColor = btnGuIThemVon.BackColor = btnGiaHanSo.BackColor = btnQuanLyNV.BackColor = btnSoTienGiaoDich.BackColor = btnTopKhachHang.BackColor = btnLuongGiaoDich.BackColor = btCSLX.BackColor = btCSNH.BackColor = Color.FromArgb(63, 110, 95);
+            formShow = true;
+        }         
         private void btnThongTinChung_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
             openChildForm(new frmthongTinKhachHang());
+            SetDFColor();
+            btnThongTinChung.BackColor = Color.FromArgb(93, 166, 143);
         }
 
 
@@ -112,47 +123,55 @@ namespace WindowsFormsApp1
         {
             hidenSubMenu();
             openChildForm(new frmThongtinso());
+            SetDFColor();
+            btnThemSo.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnRutSo_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
+            
             
         }
 
         private void btnGuIThemVon_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
             openChildForm(new fGuiThemVon());
+            SetDFColor();
+            btnGuIThemVon.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnGiaHanSo_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
             openChildForm(new fGiaHanSo());
+            SetDFColor();
+            btnGiaHanSo.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnQuanLyNV_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
             openChildForm(new Form1());
+            SetDFColor();
+            btnQuanLyNV.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnSoTienGiaoDich_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
+            SetDFColor();
+            btnSoTienGiaoDich.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnTopKhachHang_Click(object sender, EventArgs e)
         {
-            hidenSubMenu();
             openChildForm(new frmTopKhachHang());
+            SetDFColor();
+            btnTopKhachHang.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnLuongGiaoDich_Click(object sender, EventArgs e)
-        {
-            hidenSubMenu();
+        {  
             openChildForm(new frmLuongGiaoDich());
+            SetDFColor();
+            btnLuongGiaoDich.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void iconChinhSach_Click(object sender, EventArgs e)
@@ -163,13 +182,31 @@ namespace WindowsFormsApp1
         private void btCSLX_Click(object sender, EventArgs e)
         {
             openChildForm(new ChinhSuaLoaiTK());
-            hidenSubMenu();
+            SetDFColor();
+            btCSLX.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btCSNH_Click(object sender, EventArgs e)
         {
             openChildForm(new ThongTinChinhSach());
+            SetDFColor();
+            btCSNH.BackColor = Color.FromArgb(93, 166, 143);
+        }
+
+        private void pictureLogo_Click(object sender, EventArgs e)
+        {
             hidenSubMenu();
+            if (formShow)
+            {
+                curentChildForm.Close();
+                formShow = false;
+            }
+            
+        }
+
+        private void iconUser_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmAccount());
         }
     }
     
