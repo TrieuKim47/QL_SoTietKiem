@@ -24,7 +24,6 @@ namespace Thong_Tin_Khach_hang
             InitializeComponent();
             ShowData();
             danhSachChiNhanh();
-            danhSachNhanVien();
             danhSachKyHan();
         }
         //Danh sách khách hàng
@@ -47,9 +46,9 @@ namespace Thong_Tin_Khach_hang
             }
         }
         //danh sách nhân viên
-        void danhSachNhanVien()
+        void danhSachNhanVien(string text)
         {
-            string query = "SELECT TenNV FROM NHANVIEN";
+            string query = "SELECT TenNV FROM NHANVIEN where ChiNhanhLV='" + maCN(text) + "'";
             dt = dataProvider.Instance.ExecuteQuery(query);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -84,6 +83,8 @@ namespace Thong_Tin_Khach_hang
             dtmNgaySinh.Value = new DateTime(2002, 01, 13);
             rdbYes.Checked = true;
             rdbten.Checked = true;
+            dateTimePicker2.Enabled = false;
+            
         }
 
         private void iconButton7_Click(object sender, EventArgs e)
@@ -105,6 +106,21 @@ namespace Thong_Tin_Khach_hang
            
             
         }
+        private bool checkTienGuiVao()
+        {
+            string query = "select SoTienGoiToithieuBD from THAMSO";
+            dt = dataProvider.Instance.ExecuteQuery(query);
+            decimal soTien;
+            decimal soTienGuiVao;
+            Decimal.TryParse(dt.Rows[0]["SoTienGoiToithieuBD"].ToString(), out soTien);
+            Decimal.TryParse(txtsoTien.Text, out soTienGuiVao);
+            if (soTien > soTienGuiVao)
+            {
+                MessageBox.Show("số tiền gửi tiết kiệm tối thiểu là: " + soTien ,"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
         // mở sổ tiết kiệm 
         private void iconbtnAdd_Click(object sender, EventArgs e)
         {
@@ -118,48 +134,62 @@ namespace Thong_Tin_Khach_hang
                 dt = dataProvider.Instance.ExecuteQuery(query);
                 string MaLoaiTK = dt.Rows[0]["MaLoaiTK"].ToString();
                 string maSo = Random().ToString();
-                string st = "SELECT * FROM  SOTIETKIEM WHERE ='" + maSo.ToString() + "' ";
-                while (!CheckMa(st))
+                string st = "SELECT * FROM  SOTIETKIEM WHERE MaSoTK ='" + maSo.ToString() + "' ";
+                while (CheckMa(st))
                 {
-                    maSo = Random().ToString();
-                }
-                Passbook pb = new Passbook();
-                pb.maSoTK = maSo;
-                pb.maKH = txtmaKH1.Text;
-                pb.maLoaiTK = MaLoaiTK;
-                pb.maNV = maNV1();
-                pb.maChiNhanh = maCN1();
-                pb.ngayMoSo = dateTimePicker2.Value;
-                pb.soDuSo=decimal.Parse(txtsoTien.Text);
-                pb.tuDongGiaHan=rdbYes.Checked;
-                maSoTK=pb.maSoTK;
-                iconButton7.Enabled=false;
+                    Passbook pb = new Passbook();
+                    pb.maSoTK = maSo;
+                    pb.maKH = txtmaKH1.Text;
+                    pb.maLoaiTK = MaLoaiTK;
+                    pb.maNV = maNV(cbonhanVien1.Text);
+                    pb.maChiNhanh = maCN(cbochiNhanh1.Text);
+                    pb.ngayMoSo = dateTimePicker2.Value;
+                    pb.soDuSo = decimal.Parse(txtsoTien.Text);
+                    pb.tuDongGiaHan = rdbYes.Checked;
+                    maSoTK = pb.maSoTK;
+                    
 
-                phieuGuiTien pg = new phieuGuiTien();
-                pg.maPhieu = Random().ToString();
-                pg.maNV = maNV1();
-                pg.maSoTK = maSoTK;
-                pg.ngayGui = dateTimePicker2.Value;
-                pg.soTienGui = decimal.Parse(txtsoTien.Text);
-                maPhieuGui = pg.maPhieu;
-                if (edit.InsertPassBook(pb)&& edit.InsertphieuGuiTien(pg))
-                {
-                    MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    iconbtnAdd.Hide();
-                    iconbtnphieuGuiTien.Show();
-                    iconbtninSo.Show();
+                    phieuGuiTien pg = new phieuGuiTien();
+                    pg.maPhieu = Random().ToString();
+                    pg.maNV = maNV(cbonhanVien1.Text);
+                    pg.maSoTK = maSoTK;
+                    pg.ngayGui = dateTimePicker2.Value;
+                    pg.soTienGui = decimal.Parse(txtsoTien.Text);
+                    maPhieuGui = pg.maPhieu;
+                    if (edit.InsertPassBook(pb) && edit.InsertphieuGuiTien(pg) && checkTienGuiVao())
+                    {
+                        MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        iconbtnAdd.Hide();
+                        iconbtnphieuGuiTien.Show();
+                        iconbtninSo.Show();
+                        cbochiNhanh1.Enabled = false;
+                        cbonhanVien1.Enabled = false;
+                        txtsoTien.Enabled = false;
+                        cboloaiTietKiem.Enabled = false;
+                        dateTimePicker2.Enabled = false;
+                        rdbYes.Enabled= false;
+                        rdbNo.Enabled= false;
+                        iconButton7.Enabled = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vui lòng kiểm tra lại thông tin!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi không mở được!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-               
             }
         }
 
 
-            private void iconButton5_Click(object sender, EventArgs e)
+        private void iconButton5_Click(object sender, EventArgs e)
         {
+            cbochiNhanh1.Enabled = true;
+            cbonhanVien1.Enabled = true;
+            txtsoTien.Enabled = true;
+            cboloaiTietKiem.Enabled = true;
+            dateTimePicker2.Enabled = true;
+            rdbYes.Enabled = true;
+            rdbNo.Enabled = true;
+            rdbYes.Checked= true;
             reload1();
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Add(tabPage1);
@@ -194,49 +224,14 @@ namespace Thong_Tin_Khach_hang
         bool CheckMa(string st)
         {
             DataTable dtb = new DataTable();
-            dt = dataProvider.Instance.ExecuteQuery(st);
-            if (dt.Rows.Count == 0)
+            dtb = dataProvider.Instance.ExecuteQuery(st);
+            if (dtb.Rows.Count == 0)
             {
                 return true;
             }
             return false;
         }
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (CheckData())
-            {
-                string maKH = Random().ToString();
-                string st= "SELECT * FROM KHACHHANG WHERE MaKH='" + maKH.ToString() + "' OR CCCD='" + txtcccd.Text + "'";
-                while (!CheckMa(st))
-                {
-                    maKH = Random().ToString();
-                }
-                Person per = new Person();
-                per.maKH = maKH;
-                per.cccd = txtcccd.Text;
-                per.tenKH = txthoTen.Text;
-                per.ngaySinh = dtmNgaySinh.Value;
-                per.gioiTinh = cboGioiTinh.Text;
-                per.diaChi = txtdiaChi.Text;
-                per.sdt = txtsdt.Text;
-                per.email = txtgmail.Text;
-                per.chiNhanh = maCN();
-                per.nhanVien = maNV();
-                per.tenKH = txthoTen.Text;
-                per.ngayThamGia = dtmNgayThamGia.Value;
-                if (edit.Insert(per))
-                {
-                    reload();
-                    ShowData();
-                    MessageBox.Show("Thêm mới khách hàng thành công!!","Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi không thêm được, vui lòng thử lại sau!!","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                }
-            }
-            
-        }
+       
 
         public bool CheckData()
         {
@@ -327,43 +322,61 @@ namespace Thong_Tin_Khach_hang
             }
         }
 
-        private string maNV()
+        private string maNV(string text)
         {
-            string query = "SELECT MaNV from NHANVIEN where TenNV=N'" + cbonhanVien.Text + "'";
-            dt = dataProvider.Instance.ExecuteQuery(query);
-            //MessageBox.Show(query);
-            string maNV = dt.Rows[0]["MaNV"].ToString();
-            return maNV;
-            //return "";
-        }
-        private string maCN()
-        {
-            string query = "SELECT MaCN from CHINHANH where TenCN=N'" + cboChiNhanh.Text + "'";
-            dt = dataProvider.Instance.ExecuteQuery(query);
-            string TenCN = dt.Rows[0]["MaCN"].ToString();
-            return TenCN;
-        }
-
-        private string maNV1()
-        {
-            string query = "SELECT MaNV from NHANVIEN where TenNV=N'" + cbonhanVien1.Text + "'";
+            string query = "SELECT MaNV from NHANVIEN where TenNV=N'" + text + "'";
             dt = dataProvider.Instance.ExecuteQuery(query);
             string maNV = dt.Rows[0]["MaNV"].ToString();
             return maNV;
         }
-        private string maCN1()
+        private string maCN(string text)
         {
-            string query = "SELECT MaCN from CHINHANH where TenCN=N'" + cbochiNhanh1.Text + "'";
+            string query = "SELECT MaCN from CHINHANH where TenCN=N'" + text + "'";
             dt = dataProvider.Instance.ExecuteQuery(query);
-            string TenCN = dt.Rows[0]["MaCN"].ToString();
-            return TenCN;
+            string macn = dt.Rows[0]["MaCN"].ToString();
+            return macn;
         }
+        // Thêm xóa sửa khách hàng
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (CheckData())
+            {
+                string maKH = Random().ToString();
+                string st = "SELECT * FROM KHACHHANG WHERE MaKH='" + maKH.ToString() + "' OR CCCD='" + txtcccd.Text + "'";
+                while (CheckMa(st))
+                {
+                    Person per = new Person();
+                    per.maKH = maKH;
+                    per.cccd = txtcccd.Text;
+                    per.tenKH = txthoTen.Text;
+                    per.ngaySinh = dtmNgaySinh.Value;
+                    per.gioiTinh = cboGioiTinh.Text;
+                    per.diaChi = txtdiaChi.Text;
+                    per.sdt = txtsdt.Text;
+                    per.email = txtgmail.Text;
+                    per.chiNhanh = maCN(cboChiNhanh.Text);
+                    per.nhanVien = maNV(cbonhanVien.Text);
+                    per.tenKH = txthoTen.Text;
+                    per.ngayThamGia = dtmNgayThamGia.Value;
+                    if (edit.Insert(per))
+                    {
+                        reload();
+                        ShowData();
+                        MessageBox.Show("Thêm mới khách hàng thành công!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lỗi không thêm được, vui lòng thử lại sau!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
 
+        }
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (CheckData())
             {
-                
+
                 Person per = new Person();
                 per.maKH = txtmaKH.Text;
                 per.cccd = txtcccd.Text;
@@ -373,14 +386,14 @@ namespace Thong_Tin_Khach_hang
                 per.diaChi = txtdiaChi.Text;
                 per.sdt = txtsdt.Text;
                 per.email = txtgmail.Text;
-                per.chiNhanh = maCN();
-                per.nhanVien = maNV();
+                per.chiNhanh = maCN(cboChiNhanh.Text);
+                per.nhanVien = maNV(cbonhanVien.Text);
                 per.tenKH = txthoTen.Text;
                 per.ngayThamGia = dtmNgayThamGia.Value;
                 if (edit.Update(per))
                 {
                     ShowData();
-                    MessageBox.Show("Thông tin đã được thay đổi!!","Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thông tin đã được thay đổi!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -416,6 +429,7 @@ namespace Thong_Tin_Khach_hang
             }
         }
 
+        //ràng buộc nhập số cho cccd
         private void txtcccd_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -423,7 +437,7 @@ namespace Thong_Tin_Khach_hang
                 e.Handled = true;
             }
         }
-
+        //ràng buộc nhập số cho sdt
         private void txtsdt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -436,12 +450,13 @@ namespace Thong_Tin_Khach_hang
         {
 
         }
-
+        //nhập lại sổ tiết kiệm
         void reload()
         {
             txtmaKH.Text = "";
             txtcccd.Text = "";
             txtsdt.Text = "";
+            cboGioiTinh.Text = "";
             txtdiaChi.Text = "";
             txtgmail.Text = "";
             txthoTen.Text = "";
@@ -534,7 +549,7 @@ namespace Thong_Tin_Khach_hang
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             Rectangle pagearea = e.PageBounds;
-            e.Graphics.DrawImage(memoryimg,40, this.pnlPrint.Location.Y);
+            e.Graphics.DrawImage(memoryimg, (pagearea.Width/2)-(this.pnlPrint.Width/2), this.pnlPrint.Location.Y);
         }
 
         private void txtsoTien_KeyPress(object sender, KeyPressEventArgs e)
@@ -620,6 +635,20 @@ namespace Thong_Tin_Khach_hang
         private void txttimKiem_TextChanged(object sender, EventArgs e)
         {
             checkedrdb();
+        }
+
+        private void cboChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbonhanVien.Items.Clear();
+            cbonhanVien.Text = "";
+            danhSachNhanVien(cboChiNhanh.Text);
+        }
+
+        private void cbochiNhanh1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbonhanVien1.Items.Clear();
+            cbonhanVien1.Text = "";
+            danhSachNhanVien(cbochiNhanh1.Text);
         }
     }
 }

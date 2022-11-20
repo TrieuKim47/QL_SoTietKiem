@@ -18,11 +18,12 @@ namespace WindowsFormsApp1
     {
 
         private Form curentChildForm;
-
+        public static MainFormManager Instance;
         public MainFormManager()
         {
             InitializeComponent();
             customizeDesign();
+            Instance = this;
         }
         private void customizeDesign()
         {
@@ -63,7 +64,7 @@ namespace WindowsFormsApp1
                 subMenu.Visible=false;  
         }
 
-        private void iconKhachHang_Click(object sender, EventArgs e)
+        public void iconKhachHang_Click(object sender, EventArgs e)
         {
             showSubMenu(panelThongTinKhachHang);
         }
@@ -90,7 +91,7 @@ namespace WindowsFormsApp1
         }
 
 
-        private void openChildForm(Form childForm)
+        public void openChildForm(Form childForm)
         {
             if (curentChildForm != null)
             {
@@ -110,7 +111,7 @@ namespace WindowsFormsApp1
         private void btnThemSo_Click(object sender, EventArgs e)
         {
             hidenSubMenu();
-            openChildForm(new fThongTinSoTietKiem());
+            openChildForm(new frmThongtinso());
         }
 
         private void btnRutSo_Click(object sender, EventArgs e)
