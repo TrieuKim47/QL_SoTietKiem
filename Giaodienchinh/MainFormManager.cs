@@ -91,7 +91,7 @@ namespace WindowsFormsApp1
         }              
         void SetDFColor()
         {
-            btnThongTinChung.BackColor = btnThemSo.BackColor = btnGuIThemVon.BackColor = btnGiaHanSo.BackColor = btnQuanLyNV.BackColor = btnSoTienGiaoDich.BackColor = btnTopKhachHang.BackColor = btnLuongGiaoDich.BackColor = btCSLX.BackColor = btCSNH.BackColor = Color.FromArgb(63, 110, 95);
+            btnThongTinChung.BackColor = btnThongTinSo.BackColor  = btnQuanLyNV.BackColor = btnSoTienGiaoDich.BackColor = btnTopKhachHang.BackColor = btnLuongGiaoDich.BackColor = btCSLX.BackColor = btCSNH.BackColor = Color.FromArgb(63, 110, 95);
             formShow = true;
         }         
         private void btnThongTinChung_Click(object sender, EventArgs e)
@@ -118,6 +118,8 @@ namespace WindowsFormsApp1
             childForm.Show();
         }
 
+<<<<<<< HEAD
+=======
 
         private void btnThemSo_Click(object sender, EventArgs e)
         {
@@ -127,24 +129,11 @@ namespace WindowsFormsApp1
             btnThemSo.BackColor = Color.FromArgb(93, 166, 143);
         }
 
+>>>>>>> 443ebdfc916da8dfeec72b0af705fcd794139a0f
         private void btnRutSo_Click(object sender, EventArgs e)
         {
             
             
-        }
-
-        private void btnGuIThemVon_Click(object sender, EventArgs e)
-        {
-            openChildForm(new fGuiThemVon());
-            SetDFColor();
-            btnGuIThemVon.BackColor = Color.FromArgb(93, 166, 143);
-        }
-
-        private void btnGiaHanSo_Click(object sender, EventArgs e)
-        {
-            openChildForm(new fGiaHanSo());
-            SetDFColor();
-            btnGiaHanSo.BackColor = Color.FromArgb(93, 166, 143);
         }
 
         private void btnQuanLyNV_Click(object sender, EventArgs e)
@@ -207,6 +196,12 @@ namespace WindowsFormsApp1
         private void iconUser_Click(object sender, EventArgs e)
         {
             openChildForm(new frmAccount());
+        }
+
+        private void btnThongTinSo_Click(object sender, EventArgs e)
+        {
+            SetDFColor();
+            btnThongTinSo.BackColor = Color.FromArgb(93, 166, 143);
         }
     }
     

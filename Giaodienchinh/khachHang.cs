@@ -137,6 +137,17 @@ namespace Thong_Tin_Khach_hang
                 string st = "SELECT * FROM  SOTIETKIEM WHERE MaSoTK ='" + maSo.ToString() + "' ";
                 while (CheckMa(st))
                 {
+<<<<<<< HEAD
+                    
+                    MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    iconbtnAdd.Hide();
+                    iconbtnphieuGuiTien.Show();
+                    iconbtninSo.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi không mở được!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+=======
                     Passbook pb = new Passbook();
                     pb.maSoTK = maSo;
                     pb.maKH = txtmaKH1.Text;
@@ -175,6 +186,7 @@ namespace Thong_Tin_Khach_hang
                     {
                         MessageBox.Show("Vui lòng kiểm tra lại thông tin!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+>>>>>>> 443ebdfc916da8dfeec72b0af705fcd794139a0f
                 }
             }
         }

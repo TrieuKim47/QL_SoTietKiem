@@ -88,15 +88,26 @@ namespace Lần_1
             }
             return false;
         }
-
+        int Random()
+        {
+            Random rd = new Random();
+            return rd.Next(100000, 999999);
+        }
         private void btThem_Click(object sender, EventArgs e)
         {
             Check();
-            string st = "SELECT * FROM NHANVIEN WHERE MaNV='" + tbMNV.Text + "' OR CCCD='" + tbCCCD.Text + "'";
+            string maNV = Random().ToString();
+            string st = "SELECT * FROM NHANVIEN WHERE MaNV='" + maNV + "' ";
+            while (!CheckMa(st))
+            {
+                maNV = Random().ToString();
+            }
+            tbMNV.Text = maNV;
+            st = "SELECT * FROM NHANVIEN WHERE  CCCD='" + tbCCCD.Text + "'";
             if (!CheckMa(st))
             {
-                MessageBox.Show("Mã Nhân viên hoặc CMND đã tồn tại, mời nhập lại!", "Thông báo!", MessageBoxButtons.OK);
-                tbMNV.Focus();
+                MessageBox.Show("CMND/CCCD đã tồn tại, mời nhập lại!", "Thông báo!", MessageBoxButtons.OK);
+                tbCCCD.Focus();
                 return;
             }
             string gioitinh="";
@@ -224,12 +235,14 @@ namespace Lần_1
                 Search = false;
                 KhoiTao();
                 btTimKiem.Text = "Tìm kiếm";
+                tbMNV.ReadOnly = true;
             }
             else
             {
                 Search=true;
                 btTimKiem.Text = "Bỏ tìm kiếm";
                 btKhoiTao.Enabled = true;
+                tbMNV.ReadOnly = false;
             }
             
         }

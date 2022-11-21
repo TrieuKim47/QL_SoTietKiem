@@ -100,17 +100,29 @@ namespace Lần_1
             }
             return false;
         }
+        int Random()
+        {
+            Random rd = new Random();
+            return rd.Next(1000, 9999);
+        }
         private void btThem_Click(object sender, EventArgs e)
         {
             string query;
             Check();
-            string st = "SELECT * FROM LOAITIETKIEM WHERE MaLoaiTK='" + tbMa.Text + "' ";
+            string maLTK = Random().ToString();
+            string st = "SELECT * FROM LOAITIETKIEM WHERE MaLoaiTK='" + maLTK + "' ";
+            while (!CheckMa(st))
+            {
+                maLTK = Random().ToString();
+            }
+            tbMa.Text = maLTK;
+            st= "SELECT * FROM LOAITIETKIEM WHERE ThoiHan='" + tbThoiHan.Text + "' ";
             if (!CheckMa(st))
             {
-                MessageBox.Show("Mã Loại tiết kiệm đã tồn tại, mời nhập lại!", "Thông báo!", MessageBoxButtons.OK);
-                tbMa.Focus();
+                MessageBox.Show("Thời hạn đã tồn tại, mời nhập lại!", "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                tbThoiHan.Focus();
+                return;
             }
-
             if (cbThoiHan.Checked)
             {
                 query = "INSERT INTO LOAITIETKIEM VALUES ('" + tbMa.Text + "',N'" + tbTen.Text + "','" + tbThoiHan.Text + "','" + tbLaiXuat.Text + "')";
@@ -266,12 +278,14 @@ namespace Lần_1
                 Search = false;
                 KhoiTao();
                 btTimKiem.Text = "Tìm kiếm";
+                tbMa.ReadOnly = true;
             }
             else
             {
                 Search = true;
                 btTimKiem.Text = "Bỏ tìm kiếm";
                 btKhoiTao.Enabled = true;
+                tbMa.ReadOnly = false;
             }
         }
 
