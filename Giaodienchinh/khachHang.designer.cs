@@ -196,7 +196,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Size = new System.Drawing.Size(1189, 813);
+            this.tabPage4.Size = new System.Drawing.Size(1582, 813);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "In sổ tiết kiệm";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -612,7 +612,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage3.Size = new System.Drawing.Size(1189, 813);
+            this.tabPage3.Size = new System.Drawing.Size(1582, 813);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "In phiếu giao dịch";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -684,7 +684,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1189, 813);
+            this.tabPage2.Size = new System.Drawing.Size(1582, 813);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Mở sổ";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -700,7 +700,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 761);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1183, 50);
+            this.panel1.Size = new System.Drawing.Size(1576, 50);
             this.panel1.TabIndex = 15;
             // 
             // iconButton5
@@ -711,7 +711,7 @@
             this.iconButton5.IconColor = System.Drawing.Color.Black;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.IconSize = 30;
-            this.iconButton5.Location = new System.Drawing.Point(905, 3);
+            this.iconButton5.Location = new System.Drawing.Point(1102, 3);
             this.iconButton5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton5.Name = "iconButton5";
             this.iconButton5.Size = new System.Drawing.Size(133, 44);
@@ -729,7 +729,7 @@
             this.iconbtnAdd.IconColor = System.Drawing.Color.Black;
             this.iconbtnAdd.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconbtnAdd.IconSize = 30;
-            this.iconbtnAdd.Location = new System.Drawing.Point(267, 4);
+            this.iconbtnAdd.Location = new System.Drawing.Point(464, 4);
             this.iconbtnAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconbtnAdd.Name = "iconbtnAdd";
             this.iconbtnAdd.Size = new System.Drawing.Size(133, 44);
@@ -747,7 +747,7 @@
             this.iconbtnphieuGuiTien.IconColor = System.Drawing.Color.Black;
             this.iconbtnphieuGuiTien.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconbtnphieuGuiTien.IconSize = 30;
-            this.iconbtnphieuGuiTien.Location = new System.Drawing.Point(338, 2);
+            this.iconbtnphieuGuiTien.Location = new System.Drawing.Point(535, 2);
             this.iconbtnphieuGuiTien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconbtnphieuGuiTien.Name = "iconbtnphieuGuiTien";
             this.iconbtnphieuGuiTien.Size = new System.Drawing.Size(133, 44);
@@ -765,7 +765,7 @@
             this.iconbtninSo.IconColor = System.Drawing.Color.Black;
             this.iconbtninSo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconbtninSo.IconSize = 30;
-            this.iconbtninSo.Location = new System.Drawing.Point(198, 3);
+            this.iconbtninSo.Location = new System.Drawing.Point(395, 3);
             this.iconbtninSo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconbtninSo.Name = "iconbtninSo";
             this.iconbtninSo.Size = new System.Drawing.Size(133, 44);
@@ -783,7 +783,7 @@
             this.iconButton7.IconColor = System.Drawing.Color.Black;
             this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton7.IconSize = 30;
-            this.iconButton7.Location = new System.Drawing.Point(726, 3);
+            this.iconButton7.Location = new System.Drawing.Point(923, 3);
             this.iconButton7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconButton7.Name = "iconButton7";
             this.iconButton7.Size = new System.Drawing.Size(133, 44);
@@ -1261,7 +1261,7 @@
             this.cboGioiTinh.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cboGioiTinh.Location = new System.Drawing.Point(185, 219);
+            this.cboGioiTinh.Location = new System.Drawing.Point(185, 216);
             this.cboGioiTinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboGioiTinh.Name = "cboGioiTinh";
             this.cboGioiTinh.Size = new System.Drawing.Size(163, 28);
@@ -1491,7 +1491,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(39, 227);
+            this.label28.Location = new System.Drawing.Point(41, 223);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(71, 20);
             this.label28.TabIndex = 4;

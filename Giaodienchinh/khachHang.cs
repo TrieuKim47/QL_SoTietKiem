@@ -23,8 +23,8 @@ namespace Thong_Tin_Khach_hang
         {
             InitializeComponent();
             ShowData();
-            danhSachChiNhanh();
             danhSachKyHan();
+            danhSachChiNhanh();
         }
         //Danh sách khách hàng
         void ShowData()
