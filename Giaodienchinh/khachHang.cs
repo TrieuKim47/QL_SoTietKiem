@@ -16,8 +16,8 @@ namespace Thong_Tin_Khach_hang
     public partial class frmthongTinKhachHang : Form
     {
         DataTable dt = new DataTable();
-        editPerson edit=new editPerson();
-        public string maSoTK="";
+        editPerson edit = new editPerson();
+        public string maSoTK = "";
         public string maPhieuGui = "";
         public frmthongTinKhachHang()
         {
@@ -84,7 +84,7 @@ namespace Thong_Tin_Khach_hang
             rdbYes.Checked = true;
             rdbten.Checked = true;
             dateTimePicker2.Enabled = false;
-            
+
         }
 
         private void iconButton7_Click(object sender, EventArgs e)
@@ -103,8 +103,8 @@ namespace Thong_Tin_Khach_hang
             {
                 MessageBox.Show("Mời bạn chọn khách hàng cần mở sổ!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-           
-            
+
+
         }
         private bool checkTienGuiVao()
         {
@@ -116,7 +116,7 @@ namespace Thong_Tin_Khach_hang
             Decimal.TryParse(txtsoTien.Text, out soTienGuiVao);
             if (soTien > soTienGuiVao)
             {
-                MessageBox.Show("số tiền gửi tiết kiệm tối thiểu là: " + soTien ,"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("số tiền gửi tiết kiệm tối thiểu là: " + soTien, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -124,11 +124,11 @@ namespace Thong_Tin_Khach_hang
         // mở sổ tiết kiệm 
         private void iconbtnAdd_Click(object sender, EventArgs e)
         {
-            if(cbochiNhanh1.Text == "" || cboloaiTietKiem.Text == "" || txtsoTien.Text == "")
+            if (cbochiNhanh1.Text == "" || cboloaiTietKiem.Text == "" || txtsoTien.Text == "")
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else 
+            else
             {
                 string query = "SELECT MaLoaiTK from LOAITIETKIEM where TenLoaiTK=N'" + cboloaiTietKiem.Text + "'";
                 dt = dataProvider.Instance.ExecuteQuery(query);
@@ -137,17 +137,6 @@ namespace Thong_Tin_Khach_hang
                 string st = "SELECT * FROM  SOTIETKIEM WHERE MaSoTK ='" + maSo.ToString() + "' ";
                 while (CheckMa(st))
                 {
-<<<<<<< HEAD
-                    
-                    MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    iconbtnAdd.Hide();
-                    iconbtnphieuGuiTien.Show();
-                    iconbtninSo.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi không mở được!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-=======
                     Passbook pb = new Passbook();
                     pb.maSoTK = maSo;
                     pb.maKH = txtmaKH1.Text;
@@ -158,7 +147,7 @@ namespace Thong_Tin_Khach_hang
                     pb.soDuSo = decimal.Parse(txtsoTien.Text);
                     pb.tuDongGiaHan = rdbYes.Checked;
                     maSoTK = pb.maSoTK;
-                    
+
 
                     phieuGuiTien pg = new phieuGuiTien();
                     pg.maPhieu = Random().ToString();
@@ -178,15 +167,14 @@ namespace Thong_Tin_Khach_hang
                         txtsoTien.Enabled = false;
                         cboloaiTietKiem.Enabled = false;
                         dateTimePicker2.Enabled = false;
-                        rdbYes.Enabled= false;
-                        rdbNo.Enabled= false;
+                        rdbYes.Enabled = false;
+                        rdbNo.Enabled = false;
                         iconButton7.Enabled = false;
                     }
                     else
                     {
                         MessageBox.Show("Vui lòng kiểm tra lại thông tin!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
->>>>>>> 443ebdfc916da8dfeec72b0af705fcd794139a0f
                 }
             }
         }
@@ -201,7 +189,7 @@ namespace Thong_Tin_Khach_hang
             dateTimePicker2.Enabled = true;
             rdbYes.Enabled = true;
             rdbNo.Enabled = true;
-            rdbYes.Checked= true;
+            rdbYes.Checked = true;
             reload1();
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Add(tabPage1);
@@ -220,7 +208,7 @@ namespace Thong_Tin_Khach_hang
             tabControl1.TabPages.Remove(tabPage4);
             tabControl1.TabPages.Add(tabPage3);
             inPhieuGui();
-           
+
         }
 
         private void iconButton7_Click_1(object sender, EventArgs e)
@@ -243,7 +231,7 @@ namespace Thong_Tin_Khach_hang
             }
             return false;
         }
-       
+
 
         public bool CheckData()
         {
@@ -253,20 +241,20 @@ namespace Thong_Tin_Khach_hang
                 txthoTen.Focus();
                 return false;
             }
-             if (string.IsNullOrEmpty(txtcccd.Text))
+            if (string.IsNullOrEmpty(txtcccd.Text))
             {
                 MessageBox.Show("bạn chưa nhập số CCCD", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtcccd.Focus();
                 return false;
             }
-         
-             if (string.IsNullOrEmpty(txtdiaChi.Text))
+
+            if (string.IsNullOrEmpty(txtdiaChi.Text))
             {
                 MessageBox.Show("bạn chưa nhập địa chỉ khách hàng", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtdiaChi.Focus();
                 return false;
             }
-             if (string.IsNullOrEmpty(txtgmail.Text))
+            if (string.IsNullOrEmpty(txtgmail.Text))
             {
                 MessageBox.Show("bạn chưa nhập Gmail khách hàng", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtgmail.Focus();
@@ -282,13 +270,13 @@ namespace Thong_Tin_Khach_hang
                     return false;
                 }
             }
-             if (string.IsNullOrEmpty(txtsdt.Text))
+            if (string.IsNullOrEmpty(txtsdt.Text))
             {
                 MessageBox.Show("bạn chưa nhập số điện thoại khách hàng", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtsdt.Focus();
                 return false;
             }
-           if (string.IsNullOrEmpty(cboChiNhanh.Text))
+            if (string.IsNullOrEmpty(cboChiNhanh.Text))
             {
                 MessageBox.Show("bạn chưa nhập chi nhánh ngân hàng", "thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboChiNhanh.Focus();
@@ -417,8 +405,8 @@ namespace Thong_Tin_Khach_hang
         private void btnXoa_Click(object sender, EventArgs e)
         {
             Person per = new Person();
-            per.maKH=txtmaKH.Text;
-            if (txtmaKH.Text != "" && txtmaKH !=null)
+            per.maKH = txtmaKH.Text;
+            if (txtmaKH.Text != "" && txtmaKH != null)
             {
                 DialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng " + txtmaKH.Text + "khỏi danh sách không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (DialogResult == DialogResult.Yes)
@@ -499,7 +487,7 @@ namespace Thong_Tin_Khach_hang
 
         private void txtmaKH_TextChanged(object sender, EventArgs e)
         {
-            if(txtmaKH.Text == "" || txtmaKH == null)
+            if (txtmaKH.Text == "" || txtmaKH == null)
             {
                 btnAdd.Enabled = true;
                 btnSua.Enabled = false;
@@ -515,7 +503,7 @@ namespace Thong_Tin_Khach_hang
 
         private void cboloaiTietKiem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string query = "SELECT LaiXuat from LOAITIETKIEM where TenLoaiTK=N'"+cboloaiTietKiem.Text+"'";
+            string query = "SELECT LaiXuat from LOAITIETKIEM where TenLoaiTK=N'" + cboloaiTietKiem.Text + "'";
             dt = dataProvider.Instance.ExecuteQuery(query);
             txtLaiSuat.Text = dt.Rows[0]["LaiXuat"].ToString();
         }
@@ -544,7 +532,7 @@ namespace Thong_Tin_Khach_hang
         private void Print(Panel pnl)
         {
             PrinterSettings printer = new PrinterSettings();
-            pnlPrint=pnl;
+            pnlPrint = pnl;
             getPrintArea(pnl);
             printPreviewDialog1.Document = printDocument1;
             printDocument1.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
@@ -555,13 +543,13 @@ namespace Thong_Tin_Khach_hang
         private void getPrintArea(Panel pnl)
         {
             memoryimg = new Bitmap(pnl.Width, pnl.Height);
-            pnl.DrawToBitmap(memoryimg,new Rectangle(0,0,pnl.Width,pnl.Height));
+            pnl.DrawToBitmap(memoryimg, new Rectangle(0, 0, pnl.Width, pnl.Height));
         }
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
             Rectangle pagearea = e.PageBounds;
-            e.Graphics.DrawImage(memoryimg, (pagearea.Width/2)-(this.pnlPrint.Width/2), this.pnlPrint.Location.Y);
+            e.Graphics.DrawImage(memoryimg, (pagearea.Width / 2) - (this.pnlPrint.Width / 2), this.pnlPrint.Location.Y);
         }
 
         private void txtsoTien_KeyPress(object sender, KeyPressEventArgs e)
@@ -588,7 +576,7 @@ namespace Thong_Tin_Khach_hang
         public void inPhieuGui()
         {
             dataGridView2.Columns.Clear();
-            string query = "SELECT NgayGoi 'Ngày gửi', SoTienGoi 'Số Tiền Gửi', SoDuSo 'Số Dư Sổ' FROM PHIEUGOITIEN,SOTIETKIEM WHERE PHIEUGOITIEN.MaSoTK=SOTIETKIEM.MaSoTK and MaPhieu='" + maPhieuGui+"'";
+            string query = "SELECT NgayGoi 'Ngày gửi', SoTienGoi 'Số Tiền Gửi', SoDuSo 'Số Dư Sổ' FROM PHIEUGOITIEN,SOTIETKIEM WHERE PHIEUGOITIEN.MaSoTK=SOTIETKIEM.MaSoTK and MaPhieu='" + maPhieuGui + "'";
             dataGridView2.DataSource = dataProvider.Instance.ExecuteQuery(query);
             dataGridView2.Columns.Add("Column", "Nhân Viên");
             dataGridView2.Columns.Add("Column", "Khách Hàng");
@@ -631,7 +619,7 @@ namespace Thong_Tin_Khach_hang
                     {
                         query = "SELECT MaKH 'Mã Khách Hàng', kh.CCCD 'CCCD', tenKH 'Tên Khách Hàng', kh.NgaySinh 'Ngày Sinh', kh.GioiTinh 'Giới Tính', kh.DiaChi 'Địa Chỉ', kh.SDT 'Số Điện Thoại', kh.Email 'Email', cn.TenCN 'Chi Nhánh', nv.TenNV 'Nhân Viên', NgayThamGia 'Ngày Tham Gia' FROM KHACHHANG kh, CHINHANH cn, NHANVIEN nv WHERE kh.ChiNhanhNhapTT=MaCN and nv.MaNV=kh.NhanVienNhapTT and MaKH like N'%" + txttimKiem.Text + "%'";
                     }
-                  dataGridView1.DataSource = dataProvider.Instance.ExecuteQuery(query);
+                    dataGridView1.DataSource = dataProvider.Instance.ExecuteQuery(query);
                 }
                 else
                 {
@@ -642,7 +630,7 @@ namespace Thong_Tin_Khach_hang
             {
                 MessageBox.Show(ex.Message);
             }
-           
+
         }
         private void txttimKiem_TextChanged(object sender, EventArgs e)
         {
