@@ -116,12 +116,6 @@
     <Compile Include="frmTopKhachHang.designer.cs">
       <DependentUpon>frmTopKhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="fThongTinSoTietKiem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fThongTinSoTietKiem.Designer.cs">
-      <DependentUpon>fThongTinSoTietKiem.cs</DependentUpon>
-    </Compile>
     <Compile Include="khachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,9 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTopKhachHang.resx">
       <DependentUpon>frmTopKhachHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fThongTinSoTietKiem.resx">
-      <DependentUpon>fThongTinSoTietKiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="khachHang.resx">
       <DependentUpon>khachHang.cs</DependentUpon>

@@ -144,6 +144,7 @@ namespace Thong_Tin_Khach_hang
                 maPhieuGui = pg.maPhieu;
                 if (edit.InsertPassBook(pb)&& edit.InsertphieuGuiTien(pg))
                 {
+                    
                     MessageBox.Show("Mở sổ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     iconbtnAdd.Hide();
                     iconbtnphieuGuiTien.Show();

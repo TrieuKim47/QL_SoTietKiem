@@ -51,9 +51,7 @@
             this.btnQuanLyNV = new System.Windows.Forms.Button();
             this.iconNhanVien = new FontAwesome.Sharp.IconButton();
             this.panelThongTinSo = new System.Windows.Forms.Panel();
-            this.btnGiaHanSo = new System.Windows.Forms.Button();
-            this.btnGuIThemVon = new System.Windows.Forms.Button();
-            this.btnThemSo = new System.Windows.Forms.Button();
+            this.btnThongTinSo = new System.Windows.Forms.Button();
             this.iconThongTinSo = new FontAwesome.Sharp.IconButton();
             this.panelThongTinKhachHang = new System.Windows.Forms.Panel();
             this.btnThongTinChung = new System.Windows.Forms.Button();
@@ -104,7 +102,7 @@
             this.pnChinhSach.Controls.Add(this.btCSNH);
             this.pnChinhSach.Controls.Add(this.btCSLX);
             this.pnChinhSach.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnChinhSach.Location = new System.Drawing.Point(0, 756);
+            this.pnChinhSach.Location = new System.Drawing.Point(0, 684);
             this.pnChinhSach.Name = "pnChinhSach";
             this.pnChinhSach.Size = new System.Drawing.Size(212, 91);
             this.pnChinhSach.TabIndex = 7;
@@ -147,7 +145,7 @@
             this.iconChinhSach.IconColor = System.Drawing.Color.White;
             this.iconChinhSach.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconChinhSach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconChinhSach.Location = new System.Drawing.Point(0, 692);
+            this.iconChinhSach.Location = new System.Drawing.Point(0, 620);
             this.iconChinhSach.Name = "iconChinhSach";
             this.iconChinhSach.Size = new System.Drawing.Size(212, 64);
             this.iconChinhSach.TabIndex = 0;
@@ -162,7 +160,7 @@
             this.panelBCTK.Controls.Add(this.btnTopKhachHang);
             this.panelBCTK.Controls.Add(this.btnSoTienGiaoDich);
             this.panelBCTK.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelBCTK.Location = new System.Drawing.Point(0, 564);
+            this.panelBCTK.Location = new System.Drawing.Point(0, 492);
             this.panelBCTK.Name = "panelBCTK";
             this.panelBCTK.Size = new System.Drawing.Size(212, 128);
             this.panelBCTK.TabIndex = 0;
@@ -220,7 +218,7 @@
             this.iconBCTK.IconColor = System.Drawing.Color.White;
             this.iconBCTK.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconBCTK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconBCTK.Location = new System.Drawing.Point(0, 504);
+            this.iconBCTK.Location = new System.Drawing.Point(0, 432);
             this.iconBCTK.Name = "iconBCTK";
             this.iconBCTK.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.iconBCTK.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -236,7 +234,7 @@
             this.panelNhanVien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(110)))), ((int)(((byte)(95)))));
             this.panelNhanVien.Controls.Add(this.btnQuanLyNV);
             this.panelNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelNhanVien.Location = new System.Drawing.Point(0, 464);
+            this.panelNhanVien.Location = new System.Drawing.Point(0, 392);
             this.panelNhanVien.Name = "panelNhanVien";
             this.panelNhanVien.Size = new System.Drawing.Size(212, 40);
             this.panelNhanVien.TabIndex = 6;
@@ -265,7 +263,7 @@
             this.iconNhanVien.IconColor = System.Drawing.Color.White;
             this.iconNhanVien.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconNhanVien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconNhanVien.Location = new System.Drawing.Point(0, 404);
+            this.iconNhanVien.Location = new System.Drawing.Point(0, 332);
             this.iconNhanVien.Name = "iconNhanVien";
             this.iconNhanVien.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.iconNhanVien.Size = new System.Drawing.Size(212, 60);
@@ -278,53 +276,25 @@
             // panelThongTinSo
             // 
             this.panelThongTinSo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(110)))), ((int)(((byte)(95)))));
-            this.panelThongTinSo.Controls.Add(this.btnGiaHanSo);
-            this.panelThongTinSo.Controls.Add(this.btnGuIThemVon);
-            this.panelThongTinSo.Controls.Add(this.btnThemSo);
+            this.panelThongTinSo.Controls.Add(this.btnThongTinSo);
             this.panelThongTinSo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelThongTinSo.Location = new System.Drawing.Point(0, 291);
             this.panelThongTinSo.Name = "panelThongTinSo";
-            this.panelThongTinSo.Size = new System.Drawing.Size(212, 113);
+            this.panelThongTinSo.Size = new System.Drawing.Size(212, 41);
             this.panelThongTinSo.TabIndex = 3;
             // 
-            // btnGiaHanSo
+            // btnThongTinSo
             // 
-            this.btnGiaHanSo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGiaHanSo.FlatAppearance.BorderSize = 0;
-            this.btnGiaHanSo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGiaHanSo.Location = new System.Drawing.Point(0, 76);
-            this.btnGiaHanSo.Name = "btnGiaHanSo";
-            this.btnGiaHanSo.Size = new System.Drawing.Size(212, 38);
-            this.btnGiaHanSo.TabIndex = 3;
-            this.btnGiaHanSo.Text = "Gia hạn sổ";
-            this.btnGiaHanSo.UseVisualStyleBackColor = true;
-            this.btnGiaHanSo.Click += new System.EventHandler(this.btnGiaHanSo_Click);
-            // 
-            // btnGuIThemVon
-            // 
-            this.btnGuIThemVon.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGuIThemVon.FlatAppearance.BorderSize = 0;
-            this.btnGuIThemVon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuIThemVon.Location = new System.Drawing.Point(0, 35);
-            this.btnGuIThemVon.Name = "btnGuIThemVon";
-            this.btnGuIThemVon.Size = new System.Drawing.Size(212, 41);
-            this.btnGuIThemVon.TabIndex = 2;
-            this.btnGuIThemVon.Text = "Gửi thêm  vốn";
-            this.btnGuIThemVon.UseVisualStyleBackColor = true;
-            this.btnGuIThemVon.Click += new System.EventHandler(this.btnGuIThemVon_Click);
-            // 
-            // btnThemSo
-            // 
-            this.btnThemSo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnThemSo.FlatAppearance.BorderSize = 0;
-            this.btnThemSo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThemSo.Location = new System.Drawing.Point(0, 0);
-            this.btnThemSo.Name = "btnThemSo";
-            this.btnThemSo.Size = new System.Drawing.Size(212, 35);
-            this.btnThemSo.TabIndex = 0;
-            this.btnThemSo.Text = "Thông tin sổ";
-            this.btnThemSo.UseVisualStyleBackColor = true;
-            this.btnThemSo.Click += new System.EventHandler(this.btnThemSo_Click);
+            this.btnThongTinSo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnThongTinSo.FlatAppearance.BorderSize = 0;
+            this.btnThongTinSo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongTinSo.Location = new System.Drawing.Point(0, 0);
+            this.btnThongTinSo.Name = "btnThongTinSo";
+            this.btnThongTinSo.Size = new System.Drawing.Size(212, 35);
+            this.btnThongTinSo.TabIndex = 0;
+            this.btnThongTinSo.Text = "Thông tin sổ";
+            this.btnThongTinSo.UseVisualStyleBackColor = true;
+            this.btnThongTinSo.Click += new System.EventHandler(this.btnThongTinSo_Click);
             // 
             // iconThongTinSo
             // 
@@ -527,9 +497,7 @@
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.Button btnThongTinChung;
         private System.Windows.Forms.Panel panelThongTinSo;
-        private System.Windows.Forms.Button btnGuIThemVon;
-        private System.Windows.Forms.Button btnThemSo;
-        private System.Windows.Forms.Button btnGiaHanSo;
+        private System.Windows.Forms.Button btnThongTinSo;
         private System.Windows.Forms.Button btnQuanLyNV;
         private FontAwesome.Sharp.IconButton iconNhanVien;
         private System.Windows.Forms.Panel panelNhanVien;

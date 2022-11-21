@@ -260,6 +260,7 @@
             this.tbMa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMa.Location = new System.Drawing.Point(194, 42);
             this.tbMa.Name = "tbMa";
+            this.tbMa.ReadOnly = true;
             this.tbMa.Size = new System.Drawing.Size(130, 27);
             this.tbMa.TabIndex = 39;
             this.tbMa.TextChanged += new System.EventHandler(this.tbMa_TextChanged);
