@@ -4,8 +4,8 @@
 - Thành viên nhóm:
     Nguyễn Viết Đức (20521201),
     Lê Sỹ Hội (20521356),
-    Triệu Văn Kim(20521509),
-    Vũ Xuân Hoàng Lâm (20520609)   
+    Triệu Văn Kim(20521509)
+    
 - Giới thiệu chung:
   </a>
 #  Các chức năng chính của ứng dụng
