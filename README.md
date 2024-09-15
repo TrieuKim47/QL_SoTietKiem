@@ -9,7 +9,11 @@
 - Giới thiệu chung:
   </a>
 #  Các chức năng chính của ứng dụng
- 
+  - Quản lý khách hàng
+  - Quản lý sổ tiết kiệm
+  - Quản lý nhân viên
+  - Quản lý chính sách
+  - Báo cáo thống kê
   </a>
   
 # Một số hình ảnh Demo 
