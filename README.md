@@ -5,10 +5,14 @@
     Nguyễn Viết Đức (20521201),
     Lê Sỹ Hội (20521356),
     Triệu Văn Kim(20521509),
-    Vũ Xuân Hoàng Lâm (20520609)   
-- Giới thiệu chung:
+ - Giới thiệu chung:
   </a>
 #  Các chức năng chính của ứng dụng
+ - Quản lý khách hàng
+ - Quản lý sổ tiết kiệm
+ - Quản lý chính sách
+ - quản lý nhân viên
+ - Báo cáo thống kê
  
   </a>
   
